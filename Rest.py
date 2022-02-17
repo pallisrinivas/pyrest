@@ -7,7 +7,7 @@
 # Using flask to make an api
 # import necessary libraries and functions
 from flask import Flask, jsonify, request
-
+import socket
 # creating a Flask app
 app = Flask(__name__)
 
@@ -17,9 +17,12 @@ app = Flask(__name__)
 @app.route('/', methods = ['GET', 'POST'])
 def home():
 	if(request.method == 'GET'):
-
-		data = "hello world"
-		return jsonify({'data': data})
+		host_name = socket.gethostname()
+		host_ip = socket.gethostbyname(host_name)
+		print("Hostname :  ",host_name)
+		print("IP : ",host_ip)
+		data = "From Wavelenth Machine"
+		return jsonify({'host':host_name,'ip':host_ip,'data': data})
 
 
 # A simple function to calculate the square of a number
@@ -40,7 +43,3 @@ if __name__ == '__main__':
 
 
 # In[ ]:
-
-
-
-
